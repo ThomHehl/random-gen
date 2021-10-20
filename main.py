@@ -16,7 +16,18 @@ GPIO.setup(servoCTL, GPIO.OUT)
 pwm = GPIO.PWM(servoCTL, 50)
 pwm.start(0)
 
-def setAngle(angle):
+
+def roll_dice():
+    print("set to 0-deg")
+    set_angle(0)
+    sleep(1)
+
+    print("set to 180-deg")
+    set_angle(180)
+    sleep(1)
+
+
+def set_angle(angle):
     duty = angle / 18 + 2
     GPIO.output(servoCTL, True)
     pwm.ChangeDutyCycle(duty)
@@ -29,17 +40,7 @@ count = 0
 numLoops = 2
 
 while count < numLoops:
-    print("set to 0-deg")
-    setAngle(0)
-    sleep(1)
-
-    print("set to 90-deg")
-    setAngle(90)
-    sleep(1)
-
-    print("set to 180-deg")
-    setAngle(180)
-    sleep(1)
+    roll_dice()
 
     count = count + 1
 
